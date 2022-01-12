@@ -42,11 +42,11 @@ function write(...args) {
  * @param {String} text
  * @param {ctx} ctx
  */
-function err(text,ctx) {
+function err(text, ctx) {
   const fs = require('fs');
   const path = require('path');
   const file = path.resolve(__dirname, `../../log-${getNowDateString()}-error.txt`);
-  const data = `[${getIPAdress()} ${new Date().toLocaleString()}] <${getReqRemoteIp(ctx.request)}>`+text;
+  const data = `[${getIPAdress()} ${new Date().toLocaleString()}] <${getReqRemoteIp(ctx?.request)}>`+text;
   // 异步写入数据到文件
   fs.writeFile(
       file,
@@ -78,7 +78,9 @@ function getIPAdress() {
   }
 }
 
-function getReqRemoteIp(req){return (req.headers['x-forwarded-for'] || '').split(',')[0] || req.ip;};
+function getReqRemoteIp(req) {
+  return (req?.header['x-forwarded-for'] || '').split(',')[0] || req?.ip;
+}
 
 module.exports = {
   initLog,

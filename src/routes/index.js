@@ -1,8 +1,10 @@
 const router = require('koa-router')();
 
-router.prefix('/service');
+router.prefix('/service/weixin');
 
 const routeList = [
+  'redirect',
+  'token',
 ];
 
 routeList.forEach((key)=>{
